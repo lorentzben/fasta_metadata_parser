@@ -239,7 +239,7 @@ class FastaStats(object):
     
     def write_contig_csv(self, filename):
         stats_dict = self.contig_stats_dict
-        stats_df = pd.DataFrame(list(stats_dict.item()),columns=['total_bps','num_contigs','n10', 'n20', 'n30', 'n40', 'n50','l10', 'l20', 'l30', 'l40', 'l50','gc_cont','median_contig','mean_contig','largest_contig','shortest_contig'])
+        stats_df = pd.DataFrame(list(stats_dict.items()),columns=['total_bps','num_contigs','n10', 'n20', 'n30', 'n40', 'n50','l10', 'l20', 'l30', 'l40', 'l50','gc_cont','median_contig','mean_contig','largest_contig','shortest_contig'])
         stats_df.to_csv(filename, index=False)
 
     def write_scaf_stats(self, filename):
