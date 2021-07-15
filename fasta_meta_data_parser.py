@@ -323,6 +323,11 @@ if __name__ == "__main__":
     infilename = sys.argv[1]
     # outfile_xml = sys.argv[2]
     #TODO add and outfile name
+    try:
+        outfile = sys.argv[2]
+    except IndexError:
+        outfile = infilename[:-6]
+
     genome = read_genome(infilename)
     # Create a ContigStats object
     stats = FastaStats(genome)
@@ -336,6 +341,6 @@ if __name__ == "__main__":
     stats.print_stats_scaf()
     # stats.write_stats_to_xml("genome_stats.xml")
     #TODO use the infile name as alt genome out name
-    stats.write_contig_stats("genome_stats.txt")
-    stats.write_contig_csv("genome_contig_stats.csv")
+    stats.write_contig_stats(outfile+"_stats.txt")
+    stats.write_contig_csv(outfile+"_contig_stats.csv")
     # stats.create_histogram()
