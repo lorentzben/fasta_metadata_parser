@@ -240,8 +240,11 @@ class FastaStats(object):
     def write_contig_csv(self, filename):
         stats_dict = self.contig_stats_dict
         print(list(stats_dict.items()))
-        #stats_df = pd.DataFrame(list(stats_dict.items()),columns=['total_bps','num_contigs','n10', 'n20', 'n30', 'n40', 'n50','l10', 'l20', 'l30', 'l40', 'l50','gc_cont','median_contig','mean_contig','largest_contig','shortest_contig'])
-        #stats_df.to_csv(filename, index=False)
+                                                                  #['n10','l10','n20','l30','l20','largest_contig','l40','n40','shortest_contig','num_contigs','mean_contig','l50','n30','gc_cont','n50','total_bps','median_contig']
+
+                                                                  
+        stats_df = pd.DataFrame(list(stats_dict.items()),columns=['total_bps','num_contigs','n10','n20','n30','n40','n50','l10','l20','l30','l40','l50','gc_cont','median_contig','mean_contig','largest_contig','shortest_contig'])
+        stats_df.to_csv(filename, index=False)
 
     def write_scaf_stats(self, filename):
         stats_dict = self.scaf_stats_dict
