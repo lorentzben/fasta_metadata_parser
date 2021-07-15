@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 import sys
 import math
 import numpy as np
@@ -7,6 +7,7 @@ import pylab as pl
 import skbio
 from skbio.sequence import Sequence
 # from bokeh.plotting import figure, show, output_file, vplot
+import pandas as pd
 
 class FastaStats(object):
 
@@ -235,6 +236,11 @@ class FastaStats(object):
           str(float("{0:.2f}".format(stats_dict["largest_contig"]))) + "\n")
         outfile.write("Shortest contig is: " +
           str(float("{0:.2f}".format(stats_dict["shortest_contig"]))) + "\n")
+    
+    def write_contig_csv(self, filename):
+        stats_dict = self.contig_stats_dict
+        stats_df = pd.DataFrame(list(stats_dict.item()),columns=['total_bps','num_contigs','n10', 'n20', 'n30', 'n40', 'n50','l10', 'l20', 'l30', 'l40', 'l50','gc_cont','median_contig','mean_contig','largest_contig','shortest_contig'])
+        stats_df.to_csv(filename, index=False)
 
     def write_scaf_stats(self, filename):
         stats_dict = self.scaf_stats_dict
@@ -328,5 +334,6 @@ if __name__ == "__main__":
     stats.print_stats_contig()
     stats.print_stats_scaf()
     # stats.write_stats_to_xml("genome_stats.xml")
-    # stats.write_stats("genome_stats.txt")
+    stats.write_contig_stats("genome_stats.txt")
+    write_contig_csv("genome_contig_stats.csv")
     # stats.create_histogram()
