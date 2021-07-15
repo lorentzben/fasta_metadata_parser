@@ -335,5 +335,5 @@ if __name__ == "__main__":
     stats.print_stats_scaf()
     # stats.write_stats_to_xml("genome_stats.xml")
     stats.write_contig_stats("genome_stats.txt")
-    write_contig_csv("genome_contig_stats.csv")
+    stats.write_contig_csv("genome_contig_stats.csv")
     # stats.create_histogram()
