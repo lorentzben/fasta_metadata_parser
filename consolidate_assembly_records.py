@@ -16,15 +16,16 @@ def get_list_of_csvs(dir_name):
 def create_master_csv(list_of_csv_files, outfile):
     
     result = pd.DataFrame()
-    for index, record in enumerate(list_of_csv_files): 
 
-        file_name = str(list_of_csv_files[0]).split('/')[index].split('_contig')[0]
+    for record in list_of_csv_files: 
+        file_name_len = len(str(record).split('/'))-1
+        file_name = str(record).split('/')[file_name_len].split('_contig')[0]
         tmp = pd.read_csv(record)
         tmp['file'] = file_name
 
         result = result.append(tmp)
 
-    result.to_csv(outfile, index=False)
+    result.to_csv(outfile+".csv", index=False)
 
 if __name__ == "__main__":
     try:
@@ -35,9 +36,9 @@ if __name__ == "__main__":
     try:
         outfile = sys.argv[2]
     except IndexError:
-        outfile = inDir
+        outfile = inDir+"_consolidated"
 
     csv_list = get_list_of_csvs(inDir)
-
+    
     create_master_csv(csv_list, outfile)
     
