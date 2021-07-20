@@ -16,9 +16,9 @@ def get_list_of_csvs(dir_name):
 def create_master_csv(list_of_csv_files, outfile):
     
     result = pd.DataFrame()
-    for record in list_of_csv_files: 
+    for index, record in enumerate(list_of_csv_files): 
 
-        file_name = str(list_of_csv_files[0]).split('/')[file_name].split('_contig')[0]
+        file_name = str(list_of_csv_files[0]).split('/')[index].split('_contig')[0]
         tmp = pd.read_csv(record)
         tmp['file'] = file_name
 
