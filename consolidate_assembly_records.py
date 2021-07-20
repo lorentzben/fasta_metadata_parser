@@ -7,6 +7,7 @@ import argparse
 
 def get_list_of_csvs(dir_name):
     print('nice')
+    return "nice"
    
 
 def create_master_csv(list_of_csv_files):
@@ -23,4 +24,8 @@ if __name__ == "__main__":
         outfile = sys.argv[2]
     except IndexError:
         outfile = inDir
+
+    res = get_list_of_csvs(inDir)
+
+    create_master_csv(res)
     
